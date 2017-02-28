@@ -2,3 +2,7 @@
   :product_code: 001
   :price: 8.50
   :quantity: 2
+two:
+  :product_code: 002
+  :price: 5.50
+  :quantity: 2

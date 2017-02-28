@@ -62,4 +62,20 @@ class CheckoutIntegrationTest < AwesomePaymentTest
     
     assert_equal co.total, 73.76
   end
+  
+  def test_two_product_promotions_and_a_basket_promotion
+    promotional_rules = PromotionalRules.new
+    promotional_rules << @product_promotions[0]
+    promotional_rules << @product_promotions[1]
+    promotional_rules << @basket_promotions.first
+    
+    co = Checkout.new(promotional_rules)
+    co.scan(@products[0])
+    co.scan(@products[1])
+    co.scan(@products[1])
+    co.scan(@products[0])
+    co.scan(@products[2])
+    
+    assert_equal co.total, 47.95
+  end
 end
